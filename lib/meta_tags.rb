@@ -144,12 +144,12 @@ module MetaTags
     
     def normalize_description(description)
       return '' unless description
-      truncate(strip_tags(description).gsub(/\s+/, ' '), 200, '...')
+      truncate(strip_tags(description).gsub(/\s+/, ' '), :length => 200, :omission => '...')
     end
     
     def normalize_keywords(keywords)
       return '' unless keywords
       keywords = keywords.flatten.join(', ') if keywords.is_a?(Array)
-      strip_tags(keywords).chars.downcase
+      strip_tags(keywords).mb_chars.downcase
     end
 end
